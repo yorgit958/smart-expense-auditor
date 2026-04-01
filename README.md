@@ -1,4 +1,4 @@
-# 💰 Smart Expense Auditor
+# Smart Wallet- Smart Expense Auditor
 
 ## 📌 Overview
 
