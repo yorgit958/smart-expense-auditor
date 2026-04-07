@@ -1,38 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from database import init_db
+from routes import expenses
 
-# Create FastAPI app
-app = FastAPI()
+app = FastAPI(title="Smart Wallet API")
 
-# Enable CORS (important for React frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # allow all origins (for development)
+    allow_origins=["http://localhost:3000"],  # React frontend
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Root route
-@app.get("/")
-def home():
-    return {"message": "Backend running 🚀"}
+app.include_router(expenses.router)
 
-# Transactions route
-@app.get("/transactions")
-def get_transactions():
-    return [
-        {"amount": 200, "category": "Food"},
-        {"amount": 500, "category": "Shopping"},
-        {"amount": 1000, "category": "Rent"}
-    ]
-
-# Optional: simple anomaly detection demo
-@app.get("/anomaly")
-def detect_anomaly():
-    data = [50, 60, 55, 500]  # sample data
-    avg = sum(data) / len(data)
-
-    anomalies = [x for x in data if x > avg * 2]
-
-    return {"anomalies": anomalies}
+@app.on_event("startup")
+async def on_startup():
+    await init_db()
