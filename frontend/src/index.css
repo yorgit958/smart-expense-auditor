@@ -1,13 +1,134 @@
-body {
+/* ==========================
+   Global Reset & Box Sizing
+========================== */
+*, *::before, *::after {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==========================
+   HTML & Body
+========================== */
+html, body {
+  min-height: 100%;
+  width: 100%;
+  background: #0d1117; /* main dark background */
+  color: #f9fafb; /* default text color */
+  overflow-x: hidden; /* no horizontal scroll */
+  overflow-y: auto;   /* allow vertical scroll */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* ==========================
+   Root Container
+========================== */
+#root {
+  min-height: 100%;
+  background: #0d1117;
+}
+
+/* ==========================
+   Typography
+========================== */
+h1, h2, h3, h4, h5, h6 {
+  color: #f9fafb;
+}
+
+p, span, a, li, td, th {
+  color: #f9fafb;
+}
+
+/* ==========================
+   Links
+========================== */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ==========================
+   Cards (Glass Effect)
+========================== */
+.card {
+  background: rgba(17, 24, 39, 0.85); /* slightly lighter than main bg */
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(16, 185, 129, 0); /* glow off initially */
+  backdrop-filter: blur(8px); /* glass effect */
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 0 15px #10b981; /* green glow on hover */
+}
+
+/* ==========================
+   Sidebar
+========================== */
+.sidebar {
+  width: 220px;
+  background: #1f2937;
+  min-height: 100vh; /* stretch full page height */
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-item {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #f9fafb;
+  user-select: none;
+}
+
+.sidebar-item.active {
+  background-color: #10b981; /* green highlight for selected */
+  color: #111827;
+}
+
+.sidebar-item:hover:not(.active) {
+  background-color: rgba(16, 185, 129, 0.15); /* faded green hover */
+}
+
+/* ==========================
+   Table Styles
+========================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #f9fafb;
+}
+
+th, td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #374151; /* subtle dark border */
+}
+
+/* ==========================
+   Scrollbar (Optional Dark Style)
+========================== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
 }
